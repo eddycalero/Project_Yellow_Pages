@@ -2,11 +2,6 @@
 	ViewData["Title"] = "Home Page";
 }
 
-<div class="card" style="width: 55rem; height: 20rem">
-	<img style="margin-right:80px" src="..." alt=".." >
-	<img style="margin-right:80px" src="..." alt=".." >
-	<h5 style="margin-right:80px" >Aca ira el titulo</h5>
-	<h6>aca ira la informaciond de la empresa</h6>
-	<h6>aca iran los contactos</h6>
-	
-</div>
+@for(int a=0; a<10; a++ ){
+	<partial name="Card" ></partial>
+}
