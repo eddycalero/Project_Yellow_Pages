@@ -1,0 +1,80 @@
+﻿@model YellowPages.Entities.Empresa
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Empresa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmpresaId" />
+            <div class="form-group">
+                <label asp-for="MunicipioId" class="control-label"></label>
+                <select asp-for="MunicipioId" class="form-control" asp-items="ViewBag.MunicipioId"></select>
+                <span asp-validation-for="MunicipioId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Images1" class="control-label"></label>
+                <input asp-for="Images1" class="form-control" />
+                <span asp-validation-for="Images1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreate" class="control-label"></label>
+                <input asp-for="DateCreate" class="form-control" />
+                <span asp-validation-for="DateCreate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsActive" class="control-label"></label>
+                <input asp-for="IsActive" class="form-control" />
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DireccionWeb" class="control-label"></label>
+                <input asp-for="DireccionWeb" class="form-control" />
+                <span asp-validation-for="DireccionWeb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionTwo" class="control-label"></label>
+                <input asp-for="DescripcionTwo" class="form-control" />
+                <span asp-validation-for="DescripcionTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagenTwo" class="control-label"></label>
+                <input asp-for="ImagenTwo" class="form-control" />
+                <span asp-validation-for="ImagenTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using YellowPages.Data;
+using YellowPages.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<YellowPagesContext>(x =>
+{
+    x.UseSqlServer("Server=DESKTOP-2AR822P\\SQLEXPRESS;Database=YellowPages;Trusted_Connection=True;MultipleActiveResultSets=true");
+});
 
 var app = builder.Build();
 
