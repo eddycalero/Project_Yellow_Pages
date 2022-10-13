@@ -12,7 +12,6 @@ namespace YellowPages.Entities
 
         public Guid DepartamentoEmpresaId { get; set; }
         public string Name { get; set; } = null!;
-        public string SucursalName { get; set; } = null!;
         public bool? IsActive { get; set; }
 
         public virtual ICollection<Municipio> Municipios { get; set; }

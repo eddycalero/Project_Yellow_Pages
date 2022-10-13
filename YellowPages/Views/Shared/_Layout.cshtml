@@ -46,6 +46,11 @@
 									<li class="nav-item">
 										<button style="margin-left: 20px;" class=" btn btn-warning margin-border" type="submit">Search</button>
 									</li>
+									<li class="nav-item">
+										<button style="margin-left: 20px;" class=" btn btn-warning margin-border" type="submit" asp-controller="Empresas" 
+										asp-action="Create"
+										>Anunciate</button>
+									</li>
 								</ul>
 							</form>
 						</li>
@@ -55,11 +60,11 @@
 			</div>
 		</nav>
 	</heade>
-	<div class="container">
-		<main role="main" class="pb-3">
+	
+		<main role="main" class="container">
 			@RenderBody()
 		</main>
-	</div>
+	
 
 	<footer class="border-top footer text-muted">
 		<div class="container">

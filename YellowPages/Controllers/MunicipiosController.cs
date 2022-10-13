@@ -48,6 +48,7 @@ namespace YellowPages.Controllers
         public IActionResult Create()
         {
             ViewData["DepartamentoEmpresaId"] = new SelectList(_context.DepartamentoEmpresas, "DepartamentoEmpresaId", "DepartamentoEmpresaId");
+
             return View();
         }
 

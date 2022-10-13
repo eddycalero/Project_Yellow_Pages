@@ -1,5 +1,9 @@
-﻿
+﻿	@model  YellowPages.Models.ViewModel.AnuncioEmpresa
+
+
+
 <style>
+
 	.contenedor
 	{
 	 border-radius:15px;
@@ -30,6 +34,7 @@
 		/*height:200px;
 		width:200px;*/
 		border-radius:20px;
+
 
 
 	}
@@ -75,10 +80,15 @@
 	</div>
 	<div class="col-10 contenedor">
 		<div class="header1">
+			<img class="img-fluid" src="@Url.Action("ByteConvertImagen","Home", new {id = Model.EmpresaID})" />
 		</div>
 		<div class="header2">
+			<p class="text-white text-center">
+				@Model.Departamento -  @Model.Municipio 
+			</p>
 		</div>
 		<div class="header3 ">
+			<img class="img-fluid" src="@Url.Action("ByteConvertImagen2","Home", new {id = Model.EmpresaID})" />
 		</div>
 		<div class="mainItem">
 		</div>
@@ -88,3 +98,4 @@
 	<div class="col-1">
 	</div>
 </div>
+

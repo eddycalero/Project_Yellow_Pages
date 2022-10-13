@@ -1,73 +1,111 @@
-﻿@model YellowPages.Entities.Empresa
+﻿@model YellowPages.Models.ViewModel.EmpresaInsert
 
 @{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h4>Empresa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          @*  <div class="form-group">
-                <label asp-for="EmpresaId" class="control-label"></label>
-                <input asp-for="EmpresaId" class="form-control" />
-                <span asp-validation-for="EmpresaId" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="MunicipioId" class="control-label"></label>
-                <select asp-for="MunicipioId" class ="form-control" asp-items="ViewBag.MunicipioId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Images1" class="control-label"></label>
-                <input asp-for="Images1" class="form-control" />
-                <span asp-validation-for="Images1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DireccionWeb" class="control-label"></label>
-                <input asp-for="DireccionWeb" class="form-control" />
-                <span asp-validation-for="DireccionWeb" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DescripcionTwo" class="control-label"></label>
-                <input asp-for="DescripcionTwo" class="form-control" />
-                <span asp-validation-for="DescripcionTwo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImagenTwo" class="control-label"></label>
-                <input asp-for="ImagenTwo" class="form-control" />
-                <span asp-validation-for="ImagenTwo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<style>
+	.maring-top {
+		margin-top: 50px;
+	}
+</style>
+
+<div class="container container-background maring-top">
+	<div class="row mx-auto">
+		<h3 class="mx-auto text-center mt-2">Formulario Empresa</h3>
+	</div>
+	<div class="row">
+		<div class="col-3">
+		</div>
+
+		<div class="col-6">
+			<form  method="post"  class="row g-3" enctype="multipart/form-data">
+				<div class="col-6">
+					<select  id="DepartamentoID"  class="form-control" asp-items="ViewBag.Departamento">
+						<option value="-1">Selecionar departament</option>
+					</select>
+				</div>
+				<div class="col-6">
+					<select asp-for="@Model.MunicipioID" class="form-control" id="MunicipioID">
+						
+					</select>
+				</div>
+				<div class="col-6">
+					<input type="text" asp-for="@Model.Name" class="form-control"  placeholder="Nombre de Empresa">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" asp-for="@Model.Description" placeholder="Descripcion de la Empresa">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" asp-for="@Model.DireccionWeb"  placeholder="Direccion Web">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" asp-for="@Model.Direccion"  placeholder="Direccion Fisica">
+				</div>
+				<div class="col-12">
+					<input type="text" class="form-control" asp-for="@Model.DescripcionTwo" placeholder="Descripcion General">
+				</div>
+				<div class="col-6">
+					<input  type="file" name="file1" class="form-control"   placeholder="Imagen Perfil">
+				</div>
+				<div class="col-6">
+					<input type="file" name="file2" class="form-control"  placeholder="Imagen de description">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" asp-for="@Model.Phone" placeholder="Phone">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" asp-for="@Model.Correo" placeholder="Correo Electronico">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" asp-for="@Model.NombreOferta"  placeholder="Oferta1">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" asp-for="@Model.NombreOferta2"  placeholder="Oferta2">
+				</div>
+				<button style="margin-left: 20px;" class=" btn btn-warning margin-border" type="submit"
+>Anunciate</button>
+			</form>
+			<h1></h1>
+		</div>
+
+		<div class="col-3">
+		</div>
+
+	</div>
+
 </div>
+
+
 
 <div>
-    <a asp-action="Index">Back to List</a>
+	<a style="Color:black " asp-action="Index">Regresar a la Lista</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@section scripts{
+<script>
+    $(function () {
+        $("#DepartamentoID").on("change",function () {
+            var url = "@Url.Action("GetFilterMunicipio","Empresas")"
+            var id = $("#DepartamentoID").val()
+            if(id != -1 ){
+                var data = {id:id}
+                $.post(url,data).done(function(data){
+				
+                    $('#MunicipioID').find('option').remove()
+                        $(data).each(function(index,item){
+                            $('#MunicipioID')
+                            .append('<option value="' + item.municipioId + '">' + item.name + '</option>')
+							
+               })
+            }).fail(function(){
+                alert("FAllo")
+            })
+        } 
+        })
+    })
+</script>
 }

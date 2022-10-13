@@ -1,0 +1,45 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace YellowPages.Models.ViewModel
+
+{
+    [Keyless]
+    public class AnuncioEmpresa
+    {
+		public Guid EmpresaID { get; set; }
+		public string Departamento { get; set; }
+		public string Municipio { get; set; }
+		public string Empresa { get; set; }
+		public string Description { get; set; }
+		public string DireccionWeb { get; set; }
+		public string DescripcionTwo { get; set; }
+		public string Direccion { get; set; }
+	
+	}
+
+	public class AnuncioViewEmpres
+    {
+		
+		
+		public string Departamento { get; set; }
+		public string Municipio { get; set; }
+		public string Empresa { get; set; }
+		public string Description { get; set; }
+		public byte[] Images1 { get; set; }
+		public string DireccionWeb { get; set; }
+		public string DescripcionTwo { get; set; }
+		public byte[] ImagenTwo { get; set; }
+		public string Direccion { get; set; }
+
+		public ContactoList contact {get;set;}
+
+	}
+
+	public class ContactoList
+    {
+		public string contacto1 { get; set; }
+		public string contacto2 { get; set; }
+	}
+
+
+}

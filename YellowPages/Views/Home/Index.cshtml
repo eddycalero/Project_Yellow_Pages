@@ -1,7 +1,14 @@
-﻿@{
+﻿@model List<YellowPages.Models.ViewModel.AnuncioEmpresa>
+@{
 	ViewData["Title"] = "Home Page";
 }
 
-@for(int a=0; a<10; a++ ){
-	<partial name="Card" ></partial>
+@*@for(int a=0; a<10; a++ ){
+	@await Html.PartialAsync("Card", )
+	<partial name="Card"  ></partial>
+
+}*@
+
+@foreach(var item in Model){
+	@await Html.PartialAsync("Card", item)
 }

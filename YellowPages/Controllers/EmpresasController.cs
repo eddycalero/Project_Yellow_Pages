@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using YellowPages.Configuration;
 using YellowPages.Entities;
+using YellowPages.Models.ViewModel;
 
 namespace YellowPages.Controllers
 {
@@ -45,9 +47,21 @@ namespace YellowPages.Controllers
         }
 
         // GET: Empresas/Create
-        public IActionResult Create()
+        [HttpPost]
+        public  JsonResult GetFilterMunicipio(Guid id)
         {
-            ViewData["MunicipioId"] = new SelectList(_context.Municipios, "MunicipioId", "MunicipioId");
+            var muncipio = _context.Municipios.Where(x => x.DepartamentoEmpresaId == id).ToList();
+            return Json(muncipio);
+        }
+
+        public async Task<IActionResult>Create()
+        {
+            ViewBag.Departamento = (await _context.DepartamentoEmpresas.ToListAsync()).Select(x =>
+            new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.DepartamentoEmpresaId.ToString()
+            });
             return View();
         }
 
@@ -56,17 +70,14 @@ namespace YellowPages.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MunicipioId,Name,Description,Images1,DateCreate,IsActive,DireccionWeb,DescripcionTwo,ImagenTwo,Direccion")] Empresa empresa)
+        public async Task<IActionResult> Create(EmpresaInsert e, IFormFile file1, IFormFile file2)
         {
-            if (ModelState.IsValid)
-            {
-                empresa.EmpresaId = Guid.NewGuid();
-                _context.Add(empresa);
-                await _context.SaveChangesAsync();
+           
+                e.Images1 = await ConvercionImagen.ImagenConvertByte(file1).ConfigureAwait(false);
+                e.ImagenTwo = await ConvercionImagen.ImagenConvertByte(file2).ConfigureAwait(false);
+                await _context.Database.ExecuteSqlInterpolatedAsync($"EXEC Jose.US_Empresa_Insert {e.Name},{e.Description}, {e.Images1},{e.DireccionWeb},{e.DescripcionTwo},{e.ImagenTwo},{e.Direccion},{e.Phone},{e.Correo},{e.NombreOferta},{e.NombreOferta2},{e.MunicipioID}");
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["MunicipioId"] = new SelectList(_context.Municipios, "MunicipioId", "MunicipioId", empresa.MunicipioId);
-            return View(empresa);
+            
         }
 
         // GET: Empresas/Edit/5

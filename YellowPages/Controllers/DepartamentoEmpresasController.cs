@@ -53,7 +53,7 @@ namespace YellowPages.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,SucursalName,IsActive")] DepartamentoEmpresa departamentoEmpresa)
+        public async Task<IActionResult> Create([Bind("Name,IsActive")] DepartamentoEmpresa departamentoEmpresa)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace YellowPages.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("DepartamentoEmpresaId,Name,SucursalName,IsActive")] DepartamentoEmpresa departamentoEmpresa)
+        public async Task<IActionResult> Edit(Guid id, [Bind("DepartamentoEmpresaId,Name,IsActive")] DepartamentoEmpresa departamentoEmpresa)
         {
             if (id != departamentoEmpresa.DepartamentoEmpresaId)
             {

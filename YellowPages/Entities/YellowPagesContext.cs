@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using YellowPages.Models.ViewModel;
 
 namespace YellowPages.Entities
 {
@@ -21,6 +22,8 @@ namespace YellowPages.Entities
         public virtual DbSet<Empresa> Empresas { get; set; } = null!;
         public virtual DbSet<Municipio> Municipios { get; set; } = null!;
         public virtual DbSet<OfertaEmpresa> OfertaEmpresas { get; set; } = null!;
+        public virtual DbSet<AnuncioEmpresa> AnuncioEmpresa{ get; set; } = null!;
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -72,9 +75,6 @@ namespace YellowPages.Entities
                     .HasMaxLength(40)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SucursalName)
-                    .HasMaxLength(40)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Empresa>(entity =>
