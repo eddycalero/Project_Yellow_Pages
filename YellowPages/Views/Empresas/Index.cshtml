@@ -8,10 +8,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-warning" asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table style="border-color:#F7BE33" class="table">
+    <thead >
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -19,9 +19,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
+          @*  <th>
                 @Html.DisplayNameFor(model => model.Images1)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.DateCreate)
             </th>
@@ -34,9 +34,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.DescripcionTwo)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.ImagenTwo)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Direccion)
             </th>
@@ -56,9 +56,6 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Images1)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.DateCreate)
             </td>
             <td>
@@ -71,18 +68,15 @@
                 @Html.DisplayFor(modelItem => item.DescripcionTwo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImagenTwo)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Direccion)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Municipio.MunicipioId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EmpresaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmpresaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmpresaId">Delete</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.EmpresaId">Edit</a> |
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.EmpresaId">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EmpresaId">Delete</a>
             </td>
         </tr>
 }

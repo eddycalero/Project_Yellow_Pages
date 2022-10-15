@@ -1,4 +1,4 @@
-﻿	@model  YellowPages.Models.ViewModel.AnuncioEmpresa
+﻿	@model  YellowPages.Models.ViewModel.AnuncioViewEmpres
 
 
 
@@ -17,7 +17,7 @@
 	 "main main main"
 	 "fouter fouter fouter";
 	 grid-gap:5px;
-	 grid-template-columns: 205px 410px 300px;
+	 grid-template-columns: 205px 410px 270px;
 	 grid-template-rows: 200px 200px 100px;
 
 	}
@@ -28,7 +28,7 @@
 
 	}
 	.header1{
-		background:black;
+		background:#F7BE33;
 		grid-area:header1;
 		margin-top:20px;
 		/*height:200px;
@@ -39,7 +39,7 @@
 
 	}
 	.header2{
-		background:black;
+		background:#F7BE33;
 		grid-area:header2;
 		margin-top:20px;
 		border-radius:20px;
@@ -50,7 +50,7 @@
 
 	}
 	.header3{
-		background:black;
+		background:#F7BE33;
 		grid-area:header3;
 		margin-top:20px;
 		/*height:200px;*/
@@ -60,14 +60,14 @@
 	}
 
 	.fouterItem{
-		background:black;
+		background:#F7BE33;
 		border-margin:20px;
 		border-radius:20px;
 		grid-area:fouter;
 	}
 
 	.mainItem{
-		background:black;
+		background:#F7BE33;
 		grid-area:main;
 		border-radius:20px;
 	}
@@ -83,19 +83,35 @@
 			<img class="img-fluid" src="@Url.Action("ByteConvertImagen","Home", new {id = Model.EmpresaID})" />
 		</div>
 		<div class="header2">
-			<p class="text-white text-center">
-				@Model.Departamento -  @Model.Municipio 
+			<p style="font-weight:bold;" class="text-black text-lefth">
+				@Model.Departamento -  @Model.Municipio <br/>
+				@Model.Empresa<br/>
+				<br/>
+				@Model.Direccion <br/>
+				@Model.DireccionWeb
 			</p>
 		</div>
 		<div class="header3 ">
 			<img class="img-fluid" src="@Url.Action("ByteConvertImagen2","Home", new {id = Model.EmpresaID})" />
 		</div>
 		<div class="mainItem">
+			<p style="font-weight:bold;" class="text-black text-lefth">
+				@Model.Description <br/>
+				<br/>
+				@Model.DescripcionTwo
+            </p>
 		</div>
 		<div class="fouterItem">
+			<p style="font-weight:bold;" >
+			  telephono: @Model.Contacto1
+			</p>
+			<p style="font-weight:bold;">
+			  Correo: @Model.Contacto2
+			</p>
 		</div>
 	</div>
 	<div class="col-1">
 	</div>
 </div>
+
 

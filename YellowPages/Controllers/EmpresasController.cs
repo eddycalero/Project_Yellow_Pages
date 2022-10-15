@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using YellowPages.Models.ViewModel;
 
 namespace YellowPages.Controllers
 {
+    [Authorize]
     public class EmpresasController : Controller
     {
         private readonly YellowPagesContext _context;
@@ -102,7 +104,7 @@ namespace YellowPages.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("EmpresaId,MunicipioId,Name,Description,Images1,DateCreate,IsActive,DireccionWeb,DescripcionTwo,ImagenTwo,Direccion")] Empresa empresa)
+        public async Task<IActionResult> Edit(Guid id, [Bind("EmpresaId,Name,Description,DateCreate,IsActive,DireccionWeb,DescripcionTwo,Direccion")] Empresa empresa)
         {
             if (id != empresa.EmpresaId)
             {
@@ -111,9 +113,19 @@ namespace YellowPages.Controllers
 
             if (ModelState.IsValid)
             {
+                var em = _context.Empresas.FirstOrDefault(x => x.EmpresaId == id);
                 try
                 {
-                    _context.Update(empresa);
+                    em.Name = empresa.Name;
+                    em.Description = empresa.Description;
+                    em.DateCreate = empresa.DateCreate;
+                    em.IsActive = empresa.IsActive;
+                    em.DireccionWeb = empresa.DireccionWeb;
+                    em.DescripcionTwo = empresa.DescripcionTwo;
+                    em.Direccion = empresa.Direccion;
+                    //_context.Update(empresa);
+                    _context.Entry(em).State = EntityState.Modified;
+                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -164,7 +176,9 @@ namespace YellowPages.Controllers
             var empresa = await _context.Empresas.FindAsync(id);
             if (empresa != null)
             {
-                _context.Empresas.Remove(empresa);
+                empresa.IsActive = false;
+                _context.Empresas.Update(empresa);
+                await _context.SaveChangesAsync();
             }
             
             await _context.SaveChangesAsync();
